@@ -25,13 +25,13 @@ void GB_rxstring0(char *gb_buff)
 	char gb_myValue;
 	do
 	{
-
 		gb_myValue = GB_UART_RxChar0();
 		if(gb_myValue!='\n')
 		{
 			gb_buff[gb_i]=gb_myValue;
 			gb_i++;
-		}    else
+		}    
+		else
 		{
 			gb_buff[gb_i]='\0';
 			break;
@@ -42,12 +42,7 @@ void GB_rxstring0(char *gb_buff)
 	}
 void GB_printString0(const char *gb_myString)      /////to print any string
 {
-
-	
-	while (*gb_myString)
-	{
-		GB_UART_TxChar0(*gb_myString++);
-	}
+	while (*gb_myString) GB_UART_TxChar0(*gb_myString++);
 }
 /*
 Remember the passed integer should have
@@ -59,13 +54,7 @@ void GB_bit0(uint32_t gb_val)
 	int8_t gb_ptr;
 	for(gb_ptr=7;gb_ptr>=0;gb_ptr--)
 	{
-		if ((gb_val & (1<<gb_ptr))==0)
-		{
-			GB_UART_TxChar0('0');
-		}
-		else
-		{
-			GB_UART_TxChar0('1');
-		}
+		if ((gb_val & (1<<gb_ptr))==0) GB_UART_TxChar0('0');
+		else GB_UART_TxChar0('1');
 	}
 }
